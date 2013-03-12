@@ -1,0 +1,266 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D40C8A6F16EF51A500A9B8C7 /* 3dtower.rgba in Resources */ = {isa = PBXBuildFile; fileRef = D40C8A4B16EF51A500A9B8C7 /* 3dtower.rgba */; };
+		D45F332416EF4CF100EB984A /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D45F331E16EF4CF100EB984A /* file.cpp */; };
+		D45F332616EF4CF100EB984A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D45F332116EF4CF100EB984A /* main.cpp */; };
+		D45F332716EF4CF100EB984A /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D45F332216EF4CF100EB984A /* util.cpp */; };
+		D45F332D16EF4DB700EB984A /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45F332C16EF4DB700EB984A /* GLUT.framework */; };
+		D45F332F16EF4DBC00EB984A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45F332E16EF4DBC00EB984A /* OpenGL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D40C8A4B16EF51A500A9B8C7 /* 3dtower.rgba */ = {isa = PBXFileReference; lastKnownFileType = file; name = 3dtower.rgba; path = images/3dtower.rgba; sourceTree = "<group>"; };
+		D45F32FE16EF4C1F00EB984A /* Raster 3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Raster 3D.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45F331E16EF4CF100EB984A /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
+		D45F331F16EF4CF100EB984A /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
+		D45F332016EF4CF100EB984A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D45F332116EF4CF100EB984A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		D45F332216EF4CF100EB984A /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		D45F332316EF4CF100EB984A /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
+		D45F332C16EF4DB700EB984A /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		D45F332E16EF4DBC00EB984A /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D45F32FB16EF4C1F00EB984A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45F332D16EF4DB700EB984A /* GLUT.framework in Frameworks */,
+				D45F332F16EF4DBC00EB984A /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D40C8A9116EF522500A9B8C7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D45F332016EF4CF100EB984A /* Info.plist */,
+				D40C8A4B16EF51A500A9B8C7 /* 3dtower.rgba */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D40C8A9316EF527700A9B8C7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D45F331E16EF4CF100EB984A /* file.cpp */,
+				D45F331F16EF4CF100EB984A /* file.h */,
+				D45F332116EF4CF100EB984A /* main.cpp */,
+				D45F332216EF4CF100EB984A /* util.cpp */,
+				D45F332316EF4CF100EB984A /* util.h */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		D45F32F516EF4C1F00EB984A = {
+			isa = PBXGroup;
+			children = (
+				D40C8A9316EF527700A9B8C7 /* Sources */,
+				D40C8A9116EF522500A9B8C7 /* Resources */,
+				D45F330016EF4C1F00EB984A /* Frameworks */,
+				D45F32FF16EF4C1F00EB984A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D45F32FF16EF4C1F00EB984A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D45F32FE16EF4C1F00EB984A /* Raster 3D.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D45F330016EF4C1F00EB984A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D45F332C16EF4DB700EB984A /* GLUT.framework */,
+				D45F332E16EF4DBC00EB984A /* OpenGL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D45F32FD16EF4C1F00EB984A /* Raster 3D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D45F331B16EF4C2000EB984A /* Build configuration list for PBXNativeTarget "Raster 3D" */;
+			buildPhases = (
+				D45F32FA16EF4C1F00EB984A /* Sources */,
+				D45F32FB16EF4C1F00EB984A /* Frameworks */,
+				D45F32FC16EF4C1F00EB984A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Raster 3D";
+			productName = "Raster 3D";
+			productReference = D45F32FE16EF4C1F00EB984A /* Raster 3D.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D45F32F616EF4C1F00EB984A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "UW — River Falls";
+			};
+			buildConfigurationList = D45F32F916EF4C1F00EB984A /* Build configuration list for PBXProject "Raster 3D" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D45F32F516EF4C1F00EB984A;
+			productRefGroup = D45F32FF16EF4C1F00EB984A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D45F32FD16EF4C1F00EB984A /* Raster 3D */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D45F32FC16EF4C1F00EB984A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D40C8A6F16EF51A500A9B8C7 /* 3dtower.rgba in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D45F32FA16EF4C1F00EB984A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45F332416EF4CF100EB984A /* file.cpp in Sources */,
+				D45F332616EF4CF100EB984A /* main.cpp in Sources */,
+				D45F332716EF4CF100EB984A /* util.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D45F331916EF4C2000EB984A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "";
+			};
+			name = Debug;
+		};
+		D45F331A16EF4C2000EB984A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				SDKROOT = "";
+			};
+			name = Release;
+		};
+		D45F331C16EF4C2000EB984A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D45F331D16EF4C2000EB984A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D45F32F916EF4C1F00EB984A /* Build configuration list for PBXProject "Raster 3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D45F331916EF4C2000EB984A /* Debug */,
+				D45F331A16EF4C2000EB984A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D45F331B16EF4C2000EB984A /* Build configuration list for PBXNativeTarget "Raster 3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D45F331C16EF4C2000EB984A /* Debug */,
+				D45F331D16EF4C2000EB984A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D45F32F616EF4C1F00EB984A /* Project object */;
+}

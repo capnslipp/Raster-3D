@@ -23,10 +23,10 @@
 
 
 #pragma mark defines
-#define kViewAreaMax 64.0f // distance of the far side of the perspective viewing volume from the camera
-#define kViewAreaMin 4.0f // distance of the near side of the perspective viewing volume from the camera
+#define kViewAreaMax 480.0f // distance of the far side of the perspective viewing volume from the camera
+#define kViewAreaMin 16.0f // distance of the near side of the perspective viewing volume from the camera
 
-#define kCameraCoasting false // whether the camera should coast from a rotate or not
+#define kCameraCoasting true // whether the camera should coast from a rotate or not
 
 
 
@@ -49,7 +49,7 @@ GLfloat gPyramidRot[3] = {0.0f, 0.0f, 0.0f}; // rotation of the pyramid
 GLfloat gCubeRotDel[3] = {5.0f, 7.5f, 15.0f}; // rotation speed of the cube
 GLfloat gPyramidRotDel[3] = {0.0f, -135.0f, 0.0f}; // rotation speed of the pyramid
 
-GLfloat gBoundBox[6] = {-8.0f, 8.0f, -8.0f, 8.0f, -8.0f, 8.0f}; // coordinates of the bounding box the objects stay within
+GLfloat gBoundBox[6] = {-30.0f, 30.0f, -60.0f, 60.0f, -60.0f, 60.0f}; // coordinates of the bounding box the objects stay within
 
 GLfloat gLight0Pos[] = {50.0f, 300.0f, 50.0f, 1.0f}; // light position
 GLfloat gLight1Pos[] = {-150.0f, -300.0f, 0.0f, 1.0f}; // light position
@@ -65,7 +65,7 @@ GLfloat gCameraXRot = M_PI / 2.0f; // camera's pitch/rotation amount in radians 
 GLfloat gCameraYRotVel = 0.0f; // velocity of the camera's roll/rotation around the center
 GLfloat gCameraXRotVel = 0.0f; // velocity of the camera's pitch/rotation around the center
 GLfloat gCameraRotDivider = 2000.0f / (2.0f * M_PI); // the amount to divide the mouse movement by to get the rotation
-GLfloat gCameraAltitude = 32.0f; // current altitude of the camera above the center
+GLfloat gCameraAltitude = 180.0f; // current altitude of the camera above the center
 
 int gWinWidth, gWinHeight;
 
@@ -173,7 +173,7 @@ void init(void)
 */
 void initTextures(void)
 {
-	gTexData = initRGBAImageDataFromFile("3dtower.rgba", 16, 16, 16);
+	gTexData = initRGBAImageDataFromFile("brownstone.rgba", 60, 120, 120);
 	if (gTexData == NULL)
 		exit(0); // couldn't find the texture map
 	glGenTextures(1, &gTex);
@@ -183,7 +183,7 @@ void initTextures(void)
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_WRAP_R, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage3D(GL_TEXTURE_3D, 0, 4, 16, 16, 16, 0, GL_RGBA, GL_UNSIGNED_BYTE, gTexData);
+	glTexImage3D(GL_TEXTURE_3D, 0, 4, 60, 120, 120, 0, GL_RGBA, GL_UNSIGNED_BYTE, gTexData);
 	//delete [] gTexData; // disable when freeing this in dealloc()
 }
 
@@ -536,14 +536,16 @@ void display(void)
 	// bounding box: figure out position and draw
 	glColor3f(0.5f, 0.5f, 0.5f);
 	glPushMatrix();
-	//glScalef(gBoundBox[1] - gBoundBox[0], gBoundBox[3] - gBoundBox[2], gBoundBox[4] - gBoundBox[5]);
-	glutWireCube(gBoundBox[1] - gBoundBox[0]);
+	glScalef(gBoundBox[1] - gBoundBox[0], gBoundBox[3] - gBoundBox[2], gBoundBox[4] - gBoundBox[5]);
+	GLfloat kCube[6] = {-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f};
+	glutWireCube(1.0f);
 	glPopMatrix();
 	
 	glColor3f(1.0f, 1.0f, 1.0f);
 	glPushMatrix();
 	//glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
-	draw3DCubes();
+	//draw3DCubes();
+	draw3DLayers();
 	glPopMatrix();
 	
 	
@@ -577,9 +579,9 @@ void drawAxes(void)
 	GLfloat oldLineWidth;
 	glGetFloatv(GL_LINE_WIDTH, &oldLineWidth);
 	GLboolean oldLighting = glIsEnabled(GL_LIGHTING);
-	GLfloat axes[3][2][3] = {{{-8.0f, 0.0f, 0.0f}, {8.0f, 0.0f, 0.0f}},
-							 {{0.0f, -8.0f, 0.0f}, {0.0f, 8.0f, 0.0f}},
-							 {{0.0f, 0.0f, -8.0f}, {0.0f, 0.0f, 8.0f}}}; // the 3D coordinates [3] for each point [2] for each axis [3]
+	GLfloat axes[3][2][3] = {{{-60.0f, 0.0f, 0.0f}, {60.0f, 0.0f, 0.0f}},
+							 {{0.0f, -60.0f, 0.0f}, {0.0f, 60.0f, 0.0f}},
+							 {{0.0f, 0.0f, -60.0f}, {0.0f, 0.0f, 60.0f}}}; // the 3D coordinates [3] for each point [2] for each axis [3]
 	
 	glDisable(GL_LIGHTING);
 	glLineWidth(2.0f);
@@ -614,23 +616,94 @@ void drawAxes(void)
 */
 void draw3DLayers(void)
 {
-	GLfloat vertices[4][2] = {{-8.0f, -8.0f}, {8.0f, -8.0f}, {8.0f, 8.0f}, {-8.0f, 8.0f}};
+	GLfloat verticesZ[4][2] = {{-30.0f, -60.0f}, {30.0f, -60.0f}, {30.0f, 60.0f}, {-30.0f, 60.0f}};
+	GLfloat verticesY[4][2] = {{-30.0f, -60.0f}, {30.0f, -60.0f}, {30.0f, 60.0f}, {-30.0f, 60.0f}};
+	GLfloat verticesX[4][2] = {{-60.0f, -60.0f}, {60.0f, -60.0f}, {60.0f, 60.0f}, {-60.0f, 60.0f}};
 	GLfloat texCoords[4][2] = {{0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f}};
 	
 	// draw
 	glEnable(GL_TEXTURE_3D);
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	glBindTexture(GL_TEXTURE_3D, gTex);
-	for (int layerI = 0; layerI < 16; ++layerI) { // loop through each face we have to draw
+	
+	
+	// Z
+	
+	for (int layerI = 0; layerI < 120; ++layerI) { // loop through each face we have to draw
 		glNormal3f(0.0f, 0.0f, 1.0f);
 		
 		glBegin(GL_POLYGON);
 		for (int vertexI = 0; vertexI < 4; ++vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
-			glTexCoord3f(texCoords[vertexI][kS], texCoords[vertexI][kT], (GLfloat)layerI / 15.0f); // map the texture to the 4 vertices
-			glVertex3f(vertices[vertexI][kX], vertices[vertexI][kY], (GLfloat)layerI / 15.0f * 16.0f - 8.0f); // plot the vertex
+			glTexCoord3f(texCoords[vertexI][kS], texCoords[vertexI][kT], (GLfloat)layerI / 119.0f); // map the texture to the 4 vertices
+			glVertex3f(verticesZ[vertexI][kX], verticesZ[vertexI][kY], (GLfloat)layerI / 119.0f * 120.0f - 60.0f); // plot the vertex
 		}
 		glEnd();
 	} // end loop through each face
+	
+	
+	for (int layerI = 119; layerI >= 0; --layerI) { // loop through each face we have to draw
+		glNormal3f(0.0f, 0.0f, -1.0f);
+		
+		glBegin(GL_POLYGON);
+		for (int vertexI = 3; vertexI >= 0; --vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
+			glTexCoord3f(texCoords[vertexI][kS], texCoords[vertexI][kT], (GLfloat)layerI / 119.0f); // map the texture to the 4 vertices
+			glVertex3f(verticesZ[vertexI][kX], verticesZ[vertexI][kY], (GLfloat)layerI / 119.0f * 120.0f - 60.0f); // plot the vertex
+		}
+		glEnd();
+	} // end loop through each face
+	
+	
+	// Y
+	
+	for (int layerI = 0; layerI < 120; ++layerI) { // loop through each face we have to draw
+		glNormal3f(0.0f, 1.0f, 0.0f);
+		
+		glBegin(GL_POLYGON);
+		for (int vertexI = 0; vertexI < 4; ++vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
+			glTexCoord3f(texCoords[vertexI][kS], (GLfloat)layerI / 119.0f, texCoords[vertexI][kT]); // map the texture to the 4 vertices
+			glVertex3f(verticesY[vertexI][0], (GLfloat)layerI / 119.0f * 120.0f - 60.0f, verticesY[vertexI][1]); // plot the vertex
+		}
+		glEnd();
+	} // end loop through each face
+	
+	
+	for (int layerI = 119; layerI >= 0; --layerI) { // loop through each face we have to draw
+		glNormal3f(0.0f, -1.0f, 0.0f);
+		
+		glBegin(GL_POLYGON);
+		for (int vertexI = 3; vertexI >= 0; --vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
+			glTexCoord3f(texCoords[vertexI][kS], (GLfloat)layerI / 119.0f, texCoords[vertexI][kT]); // map the texture to the 4 vertices
+			glVertex3f(verticesY[vertexI][0], (GLfloat)layerI / 119.0f * 120.0f - 60.0f, verticesY[vertexI][1]); // plot the vertex
+		}
+		glEnd();
+	} // end loop through each face
+	
+	
+	// X
+	
+	for (int layerI = 0; layerI < 60; ++layerI) { // loop through each face we have to draw
+		glNormal3f(1.0f, 0.0f, 0.0f);
+		
+		glBegin(GL_POLYGON);
+		for (int vertexI = 0; vertexI < 4; ++vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
+			glTexCoord3f((GLfloat)layerI / 59.0f, texCoords[vertexI][kS], texCoords[vertexI][kT]); // map the texture to the 4 vertices
+			glVertex3f((GLfloat)layerI / 59.0f * 60.0f - 30.0f, verticesX[vertexI][0], verticesX[vertexI][1]); // plot the vertex
+		}
+		glEnd();
+	} // end loop through each face
+	
+	
+	for (int layerI = 59; layerI >= 0; --layerI) { // loop through each face we have to draw
+		glNormal3f(-1.0f, 0.0f, 0.0f);
+		
+		glBegin(GL_POLYGON);
+		for (int vertexI = 3; vertexI >= 0; --vertexI) { // loop through each vertex on this face until we hit the last one or a NULL one
+			glTexCoord3f((GLfloat)layerI / 59.0f, texCoords[vertexI][kS], texCoords[vertexI][kT]); // map the texture to the 4 vertices
+			glVertex3f((GLfloat)layerI / 59.0f * 60.0f - 30.0f, verticesX[vertexI][0], verticesX[vertexI][1]); // plot the vertex
+		}
+		glEnd();
+	} // end loop through each face
+	
 	glDisable(GL_TEXTURE_3D);
 }
 
@@ -646,21 +719,21 @@ void draw3DCubes(void)
 	
 	// draw
 	int depthChange = (gCameraPos[kZ] > 0.0f)?1:-1;
-	int depthCount = 16;
+	int depthCount = 120;
 	int depthStart = (gCameraPos[kZ] > 0.0f)?0:15;
 	int depthSplit = gCameraPos[kZ] - 0.5f + 8.0f;
 	if (depthSplit > depthCount - 1)  depthSplit = depthCount - 1;
 	if (depthSplit < 0)  depthSplit = 0;
 	
 	int heightChange = (gCameraPos[kY] > 0.0f)?1:-1;
-	int heightCount = 16;
+	int heightCount = 120;
 	int heightStart = (gCameraPos[kY] > 0.0f)?0:15;
 	int heightSplit = gCameraPos[kY] - 0.5f + 8.0f;
 	if (heightSplit > heightCount - 1)  heightSplit = heightCount - 1;
 	if (heightSplit < 0)  heightSplit = 0;
 	
 	int widthChange = (gCameraPos[kX] > 0.0f)?1:-1;
-	int widthCount = 16;
+	int widthCount = 60;
 	int widthStart = (gCameraPos[kX] > 0.0f)?0:15;
 	int widthSplit = gCameraPos[kX] - 0.5f + 8.0f;
 	if (widthSplit > widthCount - 1)  widthSplit = widthCount - 1;
@@ -669,36 +742,36 @@ void draw3DCubes(void)
 	for (int depthI = 0; depthI < depthSplit; ++depthI) { // draw low depth cubes
 		for (int heightI = 0; heightI < heightSplit; ++heightI) { // draw low height cubes
 			for (int widthI = 0; widthI < widthSplit; ++widthI) // draw low width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 			
 			for (int widthI = widthCount - 1; widthI >= widthSplit; --widthI) // draw high width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 		}
 		
 		for (int heightI = heightCount - 1; heightI >= heightSplit; --heightI) { // draw high height cubes
 			for (int widthI = 0; widthI < widthSplit; ++widthI) // draw low width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 			
 			for (int widthI = widthCount - 1; widthI >= widthSplit; --widthI) // draw high width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 		}
 	}
 	
 	for (int depthI = depthCount - 1; depthI >= depthSplit; --depthI) { // draw high depth cubes
 		for (int heightI = 0; heightI < heightSplit; ++heightI) { // draw low height cubes
 			for (int widthI = 0; widthI < widthSplit; ++widthI) // draw low width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 			
 			for (int widthI = widthCount - 1; widthI >= widthSplit; --widthI) // draw high width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 		}
 		
 		for (int heightI = heightCount - 1; heightI >= heightSplit; --heightI) { // draw high height cubes
 			for (int widthI = 0; widthI < widthSplit; ++widthI) // draw low width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 			
 			for (int widthI = widthCount - 1; widthI >= widthSplit; --widthI) // draw high width cubes
-				drawCube(((GLubyte (*)[16][16][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
+				drawCube(((GLubyte (*)[120][60][4])gTexData)[depthI][heightI][widthI], widthI, heightI, depthI);
 		}
 	}
 }

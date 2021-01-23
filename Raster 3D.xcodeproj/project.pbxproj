@@ -14,6 +14,7 @@
 		D4E1C2260938CDCA00D51D8C /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4E1C2220938CDCA00D51D8C /* util.cpp */; };
 		D4E1C2280938CDDF00D51D8C /* 3dtower.rgba in Resources */ = {isa = PBXBuildFile; fileRef = D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */; };
 		FAF5B47225BC5890001AF967 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B47125BC5890001AF967 /* MainMenu.xib */; };
+		FAF5B47625BC6B4A001AF967 /* brownstone.rgba in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B47525BC6B4A001AF967 /* brownstone.rgba */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D4E1C2230938CDCA00D51D8C /* util.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */ = {isa = PBXFileReference; lastKnownFileType = file; name = 3dtower.rgba; path = images/3dtower.rgba; sourceTree = "<group>"; };
 		FAF5B47125BC5890001AF967 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		FAF5B47525BC6B4A001AF967 /* brownstone.rgba */ = {isa = PBXFileReference; lastKnownFileType = file; name = brownstone.rgba; path = images/brownstone.rgba; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		20286C2CFDCF999611CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FAF5B47525BC6B4A001AF967 /* brownstone.rgba */,
 				D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
 				FAF5B47125BC5890001AF967 /* MainMenu.xib */,
@@ -146,6 +149,7 @@
 			files = (
 				D4E1C2280938CDDF00D51D8C /* 3dtower.rgba in Resources */,
 				FAF5B47225BC5890001AF967 /* MainMenu.xib in Resources */,
+				FAF5B47625BC6B4A001AF967 /* brownstone.rgba in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

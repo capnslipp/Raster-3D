@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Raster 3D.xcodeproj">
+      location = "self:/Volumes/SanDiskBeta/Development/Projects/Raster 3D/Raster 3D.xcodeproj">
    </FileRef>
 </Workspace>

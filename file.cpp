@@ -27,8 +27,7 @@ GLubyte *initRGBImageDataFromFile(char *filename, const int width, const int hei
 {
 	std::ifstream imageFile; // the input file
 	
-	// tricky C-specialty memory allocation that allocates it as one big block, but allows us to address it as if it is a 3-dimensional array
-	GLubyte (*imageData)[width][3] = (GLubyte (*)[width][3])new GLubyte[height * width * 3];
+	GLubyte (*imageData)[3] = (GLubyte (*)[3])new GLubyte[height * width * 3];
 	
 	imageFile.open(filename, std::ios::binary); // open the file
 	
@@ -40,12 +39,14 @@ GLubyte *initRGBImageDataFromFile(char *filename, const int width, const int hei
 	
 	for (int heightI = 0; heightI < height; ++heightI)
 		for (int widthI = 0; widthI < width; ++widthI) {
+			int pixelI = (heightI * width) + widthI;
+			
 			if (imageFile.eof()) {
-				imageData[heightI][widthI][0] = imageData[heightI][widthI][1] = imageData[heightI][widthI][2] = 0x00;
+				imageData[pixelI][0] = imageData[pixelI][1] = imageData[pixelI][2] = 0x00;
 			} else {
-				imageFile.read((char *)&imageData[heightI][widthI][0], sizeof(GLubyte));
-				imageFile.read((char *)&imageData[heightI][widthI][1], sizeof(GLubyte));
-				imageFile.read((char *)&imageData[heightI][widthI][2], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][0], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][1], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][2], sizeof(GLubyte));
 			}
 		}
 	
@@ -70,8 +71,7 @@ GLubyte *initRGBAImageDataFromFile(char *filename, const int width, const int he
 {
 	std::ifstream imageFile; // the input file
 	
-	// tricky C-specialty memory allocation that allocates it as one big block, but allows us to address it as if it is a 3-dimensional array
-	GLubyte (*imageData)[width][4] = (GLubyte (*)[width][4])new GLubyte[height * width * 4];
+	GLubyte (*imageData)[4] = (GLubyte (*)[4])new GLubyte[height * width * 4];
 	
 	imageFile.open(filename, std::ios::binary); // open the file
 	
@@ -83,13 +83,15 @@ GLubyte *initRGBAImageDataFromFile(char *filename, const int width, const int he
 	
 	for (int heightI = 0; heightI < height; ++heightI)
 		for (int widthI = 0; widthI < width; ++widthI) {
+			int pixelI = (heightI * width) + widthI;
+			
 			if (imageFile.eof()) {
-				imageData[heightI][widthI][0] = imageData[heightI][widthI][1] = imageData[heightI][widthI][2] = imageData[heightI][widthI][3] = 0x00;
+				imageData[pixelI][0] = imageData[pixelI][1] = imageData[pixelI][2] = imageData[pixelI][3] = 0x00;
 			} else {
-				imageFile.read((char *)&imageData[heightI][widthI][0], sizeof(GLubyte));
-				imageFile.read((char *)&imageData[heightI][widthI][1], sizeof(GLubyte));
-				imageFile.read((char *)&imageData[heightI][widthI][2], sizeof(GLubyte));
-				imageFile.read((char *)&imageData[heightI][widthI][3], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][0], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][1], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][2], sizeof(GLubyte));
+				imageFile.read((char *)&imageData[pixelI][3], sizeof(GLubyte));
 			}
 		}
 	
@@ -114,8 +116,7 @@ GLubyte *initRGBAImageDataFromFile(char *filename, const int width, const int he
 {
 	std::ifstream imageFile; // the input file
 	
-	// tricky C-specialty memory allocation that allocates it as one big block, but allows us to address it as if it is a 3-dimensional array
-	GLubyte (*imageData)[height][width][4] = (GLubyte (*)[height][width][4])new GLubyte[depth * height * width * 4];
+	GLubyte (*imageData)[4] = (GLubyte (*)[4])new GLubyte[depth * height * width * 4];
 	
 	imageFile.open(filename, std::ios::binary); // open the file
 	
@@ -128,13 +129,15 @@ GLubyte *initRGBAImageDataFromFile(char *filename, const int width, const int he
 	for (int depthI = 0; depthI < depth; ++depthI)
 		for (int heightI = 0; heightI < height; ++heightI)
 			for (int widthI = 0; widthI < width; ++widthI) {
+				int pixelI = (depthI * width * height) + (heightI * width) + widthI;
+				
 				if (imageFile.eof()) {
-					imageData[depthI][heightI][widthI][0] = imageData[depthI][heightI][widthI][1] = imageData[depthI][heightI][widthI][2] = imageData[depthI][heightI][widthI][3] = 0x00;
+					imageData[pixelI][0] = imageData[pixelI][1] = imageData[pixelI][2] = imageData[pixelI][3] = 0x00;
 				} else {
-					imageFile.read((char *)&imageData[depthI][heightI][widthI][0], sizeof(GLubyte));
-					imageFile.read((char *)&imageData[depthI][heightI][widthI][1], sizeof(GLubyte));
-					imageFile.read((char *)&imageData[depthI][heightI][widthI][2], sizeof(GLubyte));
-					imageFile.read((char *)&imageData[depthI][heightI][widthI][3], sizeof(GLubyte));
+					imageFile.read((char *)&imageData[pixelI][0], sizeof(GLubyte));
+					imageFile.read((char *)&imageData[pixelI][1], sizeof(GLubyte));
+					imageFile.read((char *)&imageData[pixelI][2], sizeof(GLubyte));
+					imageFile.read((char *)&imageData[pixelI][3], sizeof(GLubyte));
 				}
 			}
 	

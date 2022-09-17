@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Raster 3D</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>Icon.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>edu.uwrf.Raster-3D</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -22,5 +22,7 @@
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>UIPrerenderedIcon</key>
+	<false/>
 </dict>
 </plist>

@@ -13,6 +13,7 @@
 		D4E1C2250938CDCA00D51D8C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4E1C2210938CDCA00D51D8C /* main.cpp */; };
 		D4E1C2260938CDCA00D51D8C /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4E1C2220938CDCA00D51D8C /* util.cpp */; };
 		D4E1C2280938CDDF00D51D8C /* 3dtower.rgba in Resources */ = {isa = PBXBuildFile; fileRef = D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */; };
+		FA75816528D618E300A9D149 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA75816428D618E300A9D149 /* Icon.png */; };
 		FAF5B47225BC5890001AF967 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF5B47125BC5890001AF967 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		D4E1C2220938CDCA00D51D8C /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
 		D4E1C2230938CDCA00D51D8C /* util.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */ = {isa = PBXFileReference; lastKnownFileType = file; name = 3dtower.rgba; path = images/3dtower.rgba; sourceTree = "<group>"; };
+		FA75816428D618E300A9D149 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FAF5B47125BC5890001AF967 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 		20286C2CFDCF999611CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA75816428D618E300A9D149 /* Icon.png */,
 				D4E1C2270938CDDF00D51D8C /* 3dtower.rgba */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
 				FAF5B47125BC5890001AF967 /* MainMenu.xib */,
@@ -144,6 +147,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA75816528D618E300A9D149 /* Icon.png in Resources */,
 				D4E1C2280938CDDF00D51D8C /* 3dtower.rgba in Resources */,
 				FAF5B47225BC5890001AF967 /* MainMenu.xib in Resources */,
 			);
